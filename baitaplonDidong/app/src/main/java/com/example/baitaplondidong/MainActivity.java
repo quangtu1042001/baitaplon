@@ -43,6 +43,6 @@ public class MainActivity extends AppCompatActivity {
     private void anhXa(){
         gdvDSTruyen = findViewById(R.id.gdvDSTruyen);
     }
-    private void setUp(){gdvDSTruyen.setAdapter(adapter);}
+    private void setUp(){gdvDSTruyen.setAdapter(adapter) ;}
     private void setClik(){}
 }
