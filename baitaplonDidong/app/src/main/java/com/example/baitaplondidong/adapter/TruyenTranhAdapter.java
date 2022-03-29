@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.baitaplondidong.R;
 import com.example.baitaplondidong.object.TruyenTranh;
 
@@ -32,7 +33,7 @@ public class TruyenTranhAdapter extends ArrayAdapter<TruyenTranh> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         if(convertView== null){
             LayoutInflater inflater =(LayoutInflater)ct.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView =inflater.inflate(R.layout.item_truyen,null);
+            convertView = inflater.inflate(R.layout.item_truyen,null);
         }
         if(arr.size()>0){
             TruyenTranh truyenTranh = this.arr.get(position);
@@ -43,7 +44,12 @@ public class TruyenTranhAdapter extends ArrayAdapter<TruyenTranh> {
             tenTenTruyen.setText(truyenTranh.getTenTruyen());
             tenTenChap.setText(truyenTranh.getTenChap());
 
-            Glide.with(this.ct).load(truyenTranh.getLinkAnh()).into(imgAnhtruyen);
+            RequestOptions options = new RequestOptions()
+                    .centerCrop()
+                    .placeholder(R.mipmap.ic_launcher_round)
+                    .error(R.mipmap.ic_launcher_round);
+
+            Glide.with(this.ct).load(truyenTranh.getLinkAnh()).apply(options).into(imgAnhtruyen);
         }
         return convertView;
     }
