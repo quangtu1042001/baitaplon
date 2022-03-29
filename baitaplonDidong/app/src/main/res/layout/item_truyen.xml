@@ -4,14 +4,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
     <RelativeLayout
-        android:layout_width="100dp"
-        android:layout_height="150dp">
+        android:layout_width="200dp"
+        android:layout_height="250dp">
+
         <ImageView
             android:id="@+id/imgAnhTruyen1"
-            android:src="@drawable/a"
-            android:scaleType="centerCrop"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/a">
 
         </ImageView>
         <TextView
@@ -30,7 +31,7 @@
     </RelativeLayout>
     <TextView
         android:id="@+id/txvTenTruyen"
-        android:layout_width="100dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:padding="5dp"
         android:gravity="center"
