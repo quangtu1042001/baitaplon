@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChapActivity">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="230dp">
+    <ImageView
+        android:id="@+id/imgAnhTruyens"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/a"
+        android:scaleType="centerCrop"/>
+    <TextView
+        android:id="@+id/txvTenTruyens"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#A9000000"
+        android:text="ten truyen"
+        android:gravity="center"
+        android:textColor="#FFF"
+        android:textSize="35sp"
+        android:padding="5dp"/>
+</RelativeLayout>
+</LinearLayout>

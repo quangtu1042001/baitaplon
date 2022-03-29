@@ -2,7 +2,10 @@ package com.example.baitaplondidong;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
@@ -39,7 +42,19 @@ public class MainActivity extends AppCompatActivity implements LayTruyenVe {
     private void anhXa(){ gdvDSTruyen = findViewById(R.id.gdvDSTruyen);
     }
     private void setUp(){gdvDSTruyen.setAdapter(adapter) ;}
-    private void setClik(){}
+    private void setClik(){
+        gdvDSTruyen.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                TruyenTranh truyenTranh = truyenTranhArrayList.get(i);
+                Bundle b = new Bundle();
+                b.putSerializable("truyen", truyenTranh);
+                Intent intent = new Intent(MainActivity.this, ChapActivity.class);
+                intent.putExtra("data",b);
+                startActivity(intent);
+            }
+        });
+    }
 
     @Override
     public void batDau() {
