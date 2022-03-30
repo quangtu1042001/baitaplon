@@ -2,6 +2,7 @@ package com.example.baitaplondidong.api;
 
 import android.os.AsyncTask;
 
+import com.example.baitaplondidong.interfaces.LayChapVe;
 import com.example.baitaplondidong.interfaces.LayTruyenVe;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -10,21 +11,21 @@ import com.squareup.okhttp.ResponseBody;
 
 import java.io.IOException;
 
-public class ApiLaytruyen extends AsyncTask<Void,Void,Void> {
+public class ApiChapTruyen extends AsyncTask<Void,Void,Void> {
     String data;
-    LayTruyenVe layTruyenVe;
+    LayChapVe layChapVe;
 
-    public ApiLaytruyen(LayTruyenVe layTruyenVe) {
-        this.layTruyenVe = layTruyenVe;
-        this.layTruyenVe.batDau();
+    public ApiChapTruyen(LayChapVe layChapVe) {
+        this.layChapVe = layChapVe;
+        this.layChapVe.batDau();
     }
 
     @Override
     protected Void doInBackground(Void... voids) {
         OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder()
+        Request request = new Request.Builder().
                 //.url("http://myjson.dit.upm.es/api/bins/c0r7")
-                .url("http://datalaptrinhungdungdidong.000webhostapp.com/layTruyen.php")
+                url("http://datalaptrinhungdungdidong.000webhostapp.com/layChap.php")
                 .build();
         data = null;
         try {
@@ -40,10 +41,10 @@ public class ApiLaytruyen extends AsyncTask<Void,Void,Void> {
     @Override
     protected void onPostExecute(Void unused) {
         if(data == null){
-            this.layTruyenVe.biLoi();
+            this.layChapVe.biLoi();
         }
         else{
-            this.layTruyenVe.ketThuc(data);
+            this.layChapVe.ketThuc(data);
         }
     }
 }

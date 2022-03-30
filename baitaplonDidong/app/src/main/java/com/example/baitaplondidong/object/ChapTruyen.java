@@ -1,5 +1,8 @@
 package com.example.baitaplondidong.object;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class ChapTruyen {
     private String tenChap, ngayDang;
     public ChapTruyen(){}
@@ -23,5 +26,10 @@ public class ChapTruyen {
 
     public void setNgayDang(String ngayDang) {
         this.ngayDang = ngayDang;
+    }
+
+    public ChapTruyen(JSONObject o) throws JSONException {
+        tenChap = o.getString("tenchap");
+        ngayDang = o.getString("ngaynhap");
     }
 }
