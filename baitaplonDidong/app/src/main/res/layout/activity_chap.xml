@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ChapActivity">
+    tools:context=".ChapActivity"
+    android:orientation="vertical">
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="230dp">
@@ -20,9 +21,14 @@
         android:layout_height="match_parent"
         android:background="#A9000000"
         android:text="ten truyen"
+        android:textStyle="bold"
         android:gravity="center"
         android:textColor="#FFF"
         android:textSize="35sp"
         android:padding="5dp"/>
 </RelativeLayout>
+    <ListView
+        android:id="@+id/lsvDanhSachChap"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ListView>
 </LinearLayout>
