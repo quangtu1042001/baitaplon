@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements LayTruyenVe {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
         init();
         anhXa();
@@ -81,5 +83,10 @@ public class MainActivity extends AppCompatActivity implements LayTruyenVe {
     @Override
     public void biLoi() {
         Toast.makeText(this,"Loi ket noi",Toast.LENGTH_SHORT).show();
+    }
+
+    public void update(View view) {
+        new ApiLaytruyen(this).execute();
+
     }
 }
