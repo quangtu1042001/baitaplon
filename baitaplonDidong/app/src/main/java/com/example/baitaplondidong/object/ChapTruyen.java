@@ -29,7 +29,7 @@ public class ChapTruyen {
     }
 
     public ChapTruyen(JSONObject o) throws JSONException {
-        tenChap = o.getString("tenchap");
-        ngayDang = o.getString("ngaynhap");
+        tenChap = o.getString("tenChap");
+        ngayDang = o.getString("ngayNhap");
     }
 }

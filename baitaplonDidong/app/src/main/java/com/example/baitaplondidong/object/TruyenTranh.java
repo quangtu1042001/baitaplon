@@ -6,7 +6,7 @@ import org.json.JSONObject;
 import java.io.Serializable;
 
 public class TruyenTranh implements Serializable {
-    private String tenTruyen,tenChap,LinkAnh;
+    private String tenTruyen,tenChap,LinkAnh, id;
 
     /*
     {
@@ -19,6 +19,7 @@ public class TruyenTranh implements Serializable {
     }
 
     public TruyenTranh(JSONObject o) throws JSONException {
+        id = o.getString("id");
         tenTruyen = o.getString("tenTruyen");
         tenChap = o.getString("tenChap");
         LinkAnh = o.getString("linkAnh");
@@ -27,6 +28,7 @@ public class TruyenTranh implements Serializable {
     public TruyenTranh(String tenTruyen, String tenChap, String linkAnh) {
         this.tenTruyen = tenTruyen;
         this.tenChap = tenChap;
+        this.id = id;
         LinkAnh = linkAnh;
     }
 
@@ -52,5 +54,13 @@ public class TruyenTranh implements Serializable {
 
     public void setLinkAnh(String linkAnh) {
         LinkAnh = linkAnh;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

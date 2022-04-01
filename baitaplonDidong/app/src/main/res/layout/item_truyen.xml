@@ -2,10 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="5dp">
     <RelativeLayout
         android:layout_width="200dp"
-        android:layout_height="250dp">
+        android:layout_height="250dp"
+        >
 
         <ImageView
             android:id="@+id/imgAnhTruyen1"
@@ -20,13 +22,12 @@
             android:id="@+id/txvTenChap"
             android:layout_width="match_parent"
             android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
             android:background="#A8000000"
             android:gravity="center"
-            android:textColor="#fff"
             android:text="Kiichi!!"
-            android:textSize="10dp"
-            android:layout_alignParentBottom="true"
-            >
+            android:textColor="#fff"
+            android:textSize="10dp">
 
         </TextView>
     </RelativeLayout>

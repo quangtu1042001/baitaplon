@@ -12,20 +12,21 @@ import com.squareup.okhttp.ResponseBody;
 import java.io.IOException;
 
 public class ApiChapTruyen extends AsyncTask<Void,Void,Void> {
-    String data;
+    String data, idTruyen;
     LayChapVe layChapVe;
 
-    public ApiChapTruyen(LayChapVe layChapVe) {
+    public ApiChapTruyen(LayChapVe layChapVe, String idTruyen) {
         this.layChapVe = layChapVe;
         this.layChapVe.batDau();
+        this.idTruyen = idTruyen;
     }
 
     @Override
     protected Void doInBackground(Void... voids) {
         OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder().
+        Request request = new Request.Builder()
                 //.url("http://myjson.dit.upm.es/api/bins/c0r7")
-                url("http://datalaptrinhungdungdidong.000webhostapp.com/layChap.php")
+                .url("http://datalaptrinhungdungdidong.000webhostapp.com/layChap.php?id=" + idTruyen)
                 .build();
         data = null;
         try {
