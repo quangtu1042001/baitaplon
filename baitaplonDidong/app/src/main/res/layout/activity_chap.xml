@@ -6,27 +6,67 @@
     android:layout_height="match_parent"
     tools:context=".ChapActivity"
     android:orientation="vertical">
-<RelativeLayout
+<LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="230dp">
+    android:layout_height="230dp"
+    android:weightSum="10"
+    android:orientation="horizontal"
+    android:layout_marginBottom="10dp">
     <ImageView
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_weight="4"
         android:id="@+id/imgAnhTruyens"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:src="@drawable/a"
         android:scaleType="centerCrop"/>
-    <TextView
-        android:id="@+id/txvTenTruyens"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_weight="6"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:background="#A9000000"
-        android:text="ten truyen"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:textColor="#FFF"
-        android:textSize="35sp"
-        android:padding="5dp"/>
-</RelativeLayout>
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp">
+
+            <TextView
+                android:id="@+id/txvTenTruyens"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|left"
+                android:text="Tên truyện"
+                android:textColor="#232323"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:layout_above="@+id/txvTacgia"/>
+            <TextView
+                android:id="@+id/txvTacgia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tác giả:"
+                android:textSize="20dp"
+                android:layout_above="@+id/txvTrangThai"/>
+            <TextView
+                android:id="@+id/txvTrangThai"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Trạng thái:"
+                android:textSize="20dp"
+                android:layout_above="@+id/txvNguon"/>
+
+            <TextView
+                android:id="@+id/txvNguon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nguồn:"
+                android:textSize="20dp"
+                android:layout_alignParentBottom="true"/>
+        </RelativeLayout>
+</LinearLayout>
+
+</LinearLayout>
     <ListView
         android:id="@+id/lsvDanhSachChap"
         android:layout_width="match_parent"
