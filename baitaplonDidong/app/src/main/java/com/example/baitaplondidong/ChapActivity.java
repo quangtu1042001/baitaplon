@@ -36,7 +36,7 @@ ChapTruyenAdapter chapTruyenAdapter;
         anhXa();
         setUp();
         setClick();
-        new ApiChapTruyen(this).execute();
+        new ApiChapTruyen(this, truyenTranh.getId()).execute();
     }
     private void init(){
         Bundle b = getIntent().getBundleExtra("data");
