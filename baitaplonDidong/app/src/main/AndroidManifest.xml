@@ -13,6 +13,9 @@
         android:theme="@style/Theme.BaitaplonDidong"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".DocTruyenActivity"
+            android:exported="false" />
+        <activity
             android:name=".ChapActivity"
             android:exported="false" />
         <activity

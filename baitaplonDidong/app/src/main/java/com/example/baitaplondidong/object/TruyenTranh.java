@@ -8,12 +8,6 @@ import java.io.Serializable;
 public class TruyenTranh implements Serializable {
     private String tenTruyen,tenChap,LinkAnh, id;
 
-    /*
-    {
-    "tenchap": "Chapter 1",
-    "ngaynhap": "03-30-2022"
-    },
-    * */
     public TruyenTranh(){
 
     }

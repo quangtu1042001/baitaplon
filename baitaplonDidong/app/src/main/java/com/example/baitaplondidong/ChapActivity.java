@@ -2,8 +2,11 @@ package com.example.baitaplondidong;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -44,12 +47,7 @@ ChapTruyenAdapter chapTruyenAdapter;
         //tạo dữ liệu ảo
 
         arrChap = new ArrayList<>();
-        /*
-        for (int i = 1; i<20; i++) {
-            arrChap.add(new ChapTruyen("Chapter" + i , "Ngày đăng: 03-30-2022"));
-        }
-        chapTruyenAdapter = new ChapTruyenAdapter(this, 0, arrChap);
-         */
+
     };
     private void anhXa(){
         txvTenTruyens = findViewById(R.id.txvTenTruyens);
@@ -61,7 +59,18 @@ ChapTruyenAdapter chapTruyenAdapter;
         Glide.with(this).load(truyenTranh.getLinkAnh()).into(imgAnhTruyens);
         //lsvDanhSachChap.setAdapter(chapTruyenAdapter);
     };
-    private void setClick(){};
+    private void setClick(){
+        lsvDanhSachChap.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Bundle b = new Bundle();
+                b.putString("idChap", arrChap.get(i).getId());
+                Intent intent = new Intent(ChapActivity.this, DocTruyenActivity.class);
+                intent.putExtra("data",b);
+                startActivity(intent);
+            }
+        });
+    };
 
     @Override
     public void batDau() {
