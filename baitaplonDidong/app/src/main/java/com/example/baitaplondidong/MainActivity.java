@@ -1,6 +1,9 @@
 package com.example.baitaplondidong;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements LayTruyenVe {
     GridView gdvDSTruyen;
     TruyenTranhAdapter adapter;
     ArrayList<TruyenTranh> truyenTranhArrayList;
+    private DrawerLayout mDrawerLayour;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +38,13 @@ public class MainActivity extends AppCompatActivity implements LayTruyenVe {
         setUp();
         setClik();
         new ApiLaytruyen(this).execute();
+    Toolbar toolbar = findViewById(R.id.toolbar);
+    setSupportActionBar(toolbar);
+
+    mDrawerLayour = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayour, toolbar ,R.string.nav_open, R.string.nav_close);
+        mDrawerLayour.addDrawerListener(toggle);
+        toggle.syncState();
     }
     private void init(){
         truyenTranhArrayList = new ArrayList<>();

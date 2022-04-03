@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">baitaplonDidong</string>
+    <string name="nav_home">home</string>
+    <string name="favorite">favorite</string>
+    <string name="history">history</string>
+    <string name="nav_open">history</string>
+    <string name="nav_close">history</string>
 </resources>
