@@ -80,13 +80,14 @@ ChapTruyenAdapter chapTruyenAdapter;
             }
         });
         btnThemOrXoaThuvien.setOnClickListener(new View.OnClickListener() {
+            OkHttpClient client = new OkHttpClient();
             @Override
             public void onClick(View view) {
                 if (btnThemOrXoaThuvien.getText().equals("♡ Thêm vào thư viện")) {
                     try {
                         Request request = new Request.Builder().url("http://datalaptrinhungdungdidong.000webhostapp.com/addThuVien.php?id="
                                 + truyenTranh.getId() +"&isMark=1").build();
-                        //Response response = client.newCall(request).execute();
+                        Response response = client.newCall(request).execute();
                         //ResponseBody body = response.body();
                         System.out.print(truyenTranh.getId());
                         Toast.makeText(getApplicationContext(),"Đã thêm vào thư viện", Toast.LENGTH_SHORT).show();
@@ -100,7 +101,7 @@ ChapTruyenAdapter chapTruyenAdapter;
                     try {
                         Request request = new Request.Builder().url("http://datalaptrinhungdungdidong.000webhostapp.com/addThuVien.php?id="
                                 + truyenTranh.getId() +"&isMark=0").build();
-                        //Response response = client.newCall(request).execute();
+                        Response response = client.newCall(request).execute();
                         //ResponseBody body = response.body();
                         Toast.makeText(getApplicationContext(),"Đã xóa khỏi thư viện", Toast.LENGTH_SHORT).show();
                         btnThemOrXoaThuvien.setText("♡ Thêm vào thư viện");
