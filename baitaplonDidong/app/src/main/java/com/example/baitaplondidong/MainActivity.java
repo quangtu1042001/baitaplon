@@ -2,14 +2,18 @@ package com.example.baitaplondidong;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.Toast;
 
@@ -28,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements LayTruyenVe {
     GridView gdvDSTruyen;
     TruyenTranhAdapter adapter;
     ArrayList<TruyenTranh> truyenTranhArrayList;
+    EditText edtTimKiem ;
     private DrawerLayout mDrawerLayour;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements LayTruyenVe {
         adapter = new TruyenTranhAdapter(this,0,truyenTranhArrayList);
     }
     private void anhXa(){ gdvDSTruyen = findViewById(R.id.gdvDSTruyen);
+        edtTimKiem = findViewById(R.id.edtTimKiem);
     }
     private void setUp(){gdvDSTruyen.setAdapter(adapter) ;}
     private void setClik(){
@@ -64,6 +70,23 @@ public class MainActivity extends AppCompatActivity implements LayTruyenVe {
                 Intent intent = new Intent(MainActivity.this, ChapActivity.class);
                 intent.putExtra("data",b);
                 startActivity(intent);
+            }
+        });
+        edtTimKiem.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String s = edtTimKiem.getText().toString();
+                adapter.sortTruyen(s);
             }
         });
     }
