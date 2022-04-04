@@ -64,7 +64,8 @@ ChapTruyenAdapter chapTruyenAdapter;
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Bundle b = new Bundle();
-                b.putString("idChap", arrChap.get(i).getId());
+                b.putString("tenChap", arrChap.get(i).getTenChap());
+                b.putString("idTruyen",arrChap.get(i).getIdTruyen());
                 Intent intent = new Intent(ChapActivity.this, DocTruyenActivity.class);
                 intent.putExtra("data",b);
                 startActivity(intent);

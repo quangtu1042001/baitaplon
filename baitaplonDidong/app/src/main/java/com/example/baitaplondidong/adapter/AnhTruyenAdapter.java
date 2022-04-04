@@ -16,6 +16,8 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.baitaplondidong.R;
 import com.example.baitaplondidong.object.AnhTruyen;
 import com.example.baitaplondidong.object.ChapTruyen;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +45,10 @@ public class AnhTruyenAdapter extends ArrayAdapter<AnhTruyen> {
                     .placeholder(R.mipmap.ic_launcher_round)
                     .error(R.mipmap.ic_launcher_round);
 
-            Glide.with(this.ct).load(anhTruyen.getLinkAnh()).apply(options).into(imgAnhtruyen);
+//            Glide.with(this.ct).load(anhTruyen.getLinkAnh()).apply(options).into(imgAnhtruyen);
+            Picasso.with(this.ct).load(anhTruyen.getLinkAnh())
+                    .placeholder(R.drawable.progress_animation)
+                    .error(R.mipmap.ic_launcher_round).into(imgAnhtruyen);
         }
         return convertView;
     }

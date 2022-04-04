@@ -31,7 +31,7 @@ public class DocTruyenActivity extends AppCompatActivity implements LayAnhVe{
 //    ImageView imgAnh;
 //    ArrayList<String> arrUrlAnh;
 //    int soTrang, soTrangDangDoc;
-    String idChap;
+    String tenChap, idTruyen;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,13 +39,13 @@ public class DocTruyenActivity extends AppCompatActivity implements LayAnhVe{
         init();
         anhXa();
         setUp();
-        new ApiLayAnh(this, idChap).execute();
+        new ApiLayAnh(this, tenChap,idTruyen).execute();
     }
 
     private void init(){
-
         Bundle b = getIntent().getBundleExtra("data");
-        idChap =  b.getString("idChap");
+        tenChap =  b.getString("tenChap");
+        idTruyen = b.getString("idTruyen");
         anhTruyenArrayList = new ArrayList<>();
         anhTruyenAdapter = new AnhTruyenAdapter(this, 0, anhTruyenArrayList);
 
