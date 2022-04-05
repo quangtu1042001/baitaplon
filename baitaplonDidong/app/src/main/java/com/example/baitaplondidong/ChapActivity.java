@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.example.baitaplondidong.adapter.ChapTruyenAdapter;
 import com.example.baitaplondidong.api.ApiChapTruyen;
 import com.example.baitaplondidong.api.ApiDanhDauChap;
+import com.example.baitaplondidong.api.ApiThemVaoThuVien;
 import com.example.baitaplondidong.interfaces.LayChapVe;
 import com.example.baitaplondidong.object.ChapTruyen;
 import com.example.baitaplondidong.object.TruyenTranh;
@@ -35,6 +36,7 @@ Button btnThemOrXoaThuvien, btnDocTruyen;
 TextView txvTenTruyens;
 ImageView imgAnhTruyens;
 TruyenTranh truyenTranh;
+ArrayList<TruyenTranh> arrTruyenTranh;
 ListView lsvDanhSachChap;
 ArrayList<ChapTruyen> arrChap;
 ChapTruyenAdapter chapTruyenAdapter;
@@ -82,36 +84,17 @@ ChapTruyenAdapter chapTruyenAdapter;
             }
         });
         btnThemOrXoaThuvien.setOnClickListener(new View.OnClickListener() {
-            OkHttpClient client = new OkHttpClient();
             @Override
             public void onClick(View view) {
                 if (btnThemOrXoaThuvien.getText().equals("♡ Thêm vào thư viện")) {
-                    try {
-                        Request request = new Request.Builder().url("http://datalaptrinhungdungdidong.000webhostapp.com/addThuVien.php?id="
-                                + truyenTranh.getId() +"&isMark=1").build();
-                        Response response = client.newCall(request).execute();
-                        //ResponseBody body = response.body();
-                        System.out.print(truyenTranh.getId());
                         Toast.makeText(getApplicationContext(),"Đã thêm vào thư viện", Toast.LENGTH_SHORT).show();
                         btnThemOrXoaThuvien.setText("\uD83E\uDD0D Xóa khỏi thư viện");
-                    }
-                    catch (Exception e) {
-                        Toast.makeText(getApplicationContext(),"ERROR", Toast.LENGTH_SHORT).show();
-                    }
                 }
                 else {
-                    try {
-                        Request request = new Request.Builder().url("http://datalaptrinhungdungdidong.000webhostapp.com/addThuVien.php?id="
-                                + truyenTranh.getId() +"&isMark=0").build();
-                        Response response = client.newCall(request).execute();
-                        //ResponseBody body = response.body();
                         Toast.makeText(getApplicationContext(),"Đã xóa khỏi thư viện", Toast.LENGTH_SHORT).show();
                         btnThemOrXoaThuvien.setText("♡ Thêm vào thư viện");
-                    }
-                    catch (Exception e) {
-                        Toast.makeText(getApplicationContext(),"ERROR", Toast.LENGTH_SHORT).show();
-                    }
                 }
+                new ApiThemVaoThuVien(truyenTranh, ChapActivity.this).execute();
             }
         });
     };
