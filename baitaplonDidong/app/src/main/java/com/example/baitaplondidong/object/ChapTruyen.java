@@ -4,7 +4,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class ChapTruyen {
-    private String id, tenChap, ngayDang;
+    private String id;
+    private String tenChap;
+    private String ngayDang;
+
+    public String getIdTruyen() {
+        return idTruyen;
+    }
+
+    public void setIdTruyen(String idTruyen) {
+        this.idTruyen = idTruyen;
+    }
+
+    private String idTruyen;
     public ChapTruyen(){}
 
     public ChapTruyen(String tenChap, String ngayDang) {
@@ -32,6 +44,7 @@ public class ChapTruyen {
         id = o.getString("id");
         tenChap = o.getString("tenChap");
         ngayDang = o.getString("ngayNhap");
+        idTruyen = o.getString("idTruyen");
     }
 
     public String getId() {

@@ -59,7 +59,7 @@ public class TruyenTranhAdapter extends ArrayAdapter<TruyenTranh> {
             tenTenChap.setText(truyenTranh.getTenChap());
 
             RequestOptions options = new RequestOptions()
-                    .placeholder(R.mipmap.ic_launcher_round)
+                    .placeholder(R.drawable.progress_animation)
                     .error(R.mipmap.ic_launcher_round);
 
             Glide.with(this.ct).load(truyenTranh.getLinkAnh()).apply(options).into(imgAnhtruyen);

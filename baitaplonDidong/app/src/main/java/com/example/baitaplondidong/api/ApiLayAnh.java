@@ -3,30 +3,32 @@ package com.example.baitaplondidong.api;
 import android.os.AsyncTask;
 
 import com.example.baitaplondidong.interfaces.LayAnhVe;
-import com.example.baitaplondidong.interfaces.LayTruyenVe;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 import com.squareup.okhttp.ResponseBody;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 public class ApiLayAnh extends AsyncTask<Void,Void,Void> {
-    String data, idChap;
+    String data, tenChap, idTruyen;
     LayAnhVe LayAnhVe;
 
-    public ApiLayAnh(LayAnhVe LayAnhVe, String idChap) {
+    public ApiLayAnh(LayAnhVe LayAnhVe, String tenChap, String idTruyen) {
         this.LayAnhVe = LayAnhVe;
-        this.idChap = idChap;
+        this.tenChap = tenChap;
+        this.idTruyen = idTruyen;
         this.LayAnhVe.batDau();
     }
 
     @Override
     protected Void doInBackground(Void... voids) {
         OkHttpClient client = new OkHttpClient();
+        client.setConnectTimeout(30, TimeUnit.SECONDS); // connect timeout
+        client.setReadTimeout(30, TimeUnit.SECONDS);    // socket timeout
         Request request = new Request.Builder()
-//                .url("http://myjson.dit.upm.es/api/bins/33rn")
-                .url("http://datalaptrinhungdungdidong.000webhostapp.com/layAnh.php?idChap="+idChap)
+                .url("http://datalaptrinhungdungdidong.000webhostapp.com/testLayAnh.php?tenChap="+ tenChap+"&idTruyen="+idTruyen)
                 .build();
         data = null;
         try {
