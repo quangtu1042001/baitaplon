@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -33,12 +34,24 @@ public class ChapTruyenAdapter extends ArrayAdapter<ChapTruyen> {
         }
         if(arr.size()>0) {
             TextView txvTenChaps, txvNgayNhap;
+            ImageView imvTag;
             txvTenChaps = convertView.findViewById(R.id.txvTenChaps);
             txvNgayNhap = convertView.findViewById(R.id.txvNgayNhap);
+            imvTag = convertView.findViewById(R.id.imgTagChap);
             ChapTruyen chapTruyen = arr.get(position);
-            txvTenChaps.setText(chapTruyen.getTenChap());
+            txvTenChaps.setText("Chap "+chapTruyen.getTenChap());
             txvNgayNhap.setText(chapTruyen.getNgayDang());
+            if (chapTruyen.getIsMark().equals("1"))
+            {
+                imvTag.setVisibility(View.VISIBLE);
+                imvTag.setImageResource(R.drawable.tag);
+            }
+            else
+            {
+                imvTag.setVisibility(View.INVISIBLE);
+            }
         }
         return convertView;
     }
+
 }

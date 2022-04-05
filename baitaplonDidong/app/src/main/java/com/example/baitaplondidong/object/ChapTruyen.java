@@ -8,6 +8,9 @@ public class ChapTruyen {
     private String tenChap;
     private String ngayDang;
 
+
+    private String isMark;
+
     public String getIdTruyen() {
         return idTruyen;
     }
@@ -45,6 +48,7 @@ public class ChapTruyen {
         tenChap = o.getString("tenChap");
         ngayDang = o.getString("ngayNhap");
         idTruyen = o.getString("idTruyen");
+        isMark = o.getString("isMark");
     }
 
     public String getId() {
@@ -53,5 +57,13 @@ public class ChapTruyen {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getIsMark() {
+        return isMark;
+    }
+
+    public void setIsMark(String isMark) {
+        this.isMark = isMark;
     }
 }
