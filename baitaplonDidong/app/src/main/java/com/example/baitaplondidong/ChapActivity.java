@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -16,6 +15,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.baitaplondidong.adapter.ChapTruyenAdapter;
 import com.example.baitaplondidong.api.ApiChapTruyen;
+import com.example.baitaplondidong.api.ApiDanhDauChap;
 import com.example.baitaplondidong.interfaces.LayChapVe;
 import com.example.baitaplondidong.object.ChapTruyen;
 import com.example.baitaplondidong.object.TruyenTranh;
@@ -27,6 +27,7 @@ import com.squareup.okhttp.ResponseBody;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ChapActivity extends AppCompatActivity implements LayChapVe {
@@ -45,6 +46,7 @@ ChapTruyenAdapter chapTruyenAdapter;
         anhXa();
         setUp();
         setClick();
+        setLongClick();
         new ApiChapTruyen(this, truyenTranh.getId()).execute();
     }
     private void init(){
@@ -113,15 +115,29 @@ ChapTruyenAdapter chapTruyenAdapter;
             }
         });
     };
+    private void setLongClick(){
+        lsvDanhSachChap.setLongClickable(true);
+        lsvDanhSachChap.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+//                Toast.makeText(ChapActivity.this, body.string(), Toast.LENGTH_SHORT).show();
+//                updateChap();
+                new ApiDanhDauChap(arrChap,i,ChapActivity.this).execute();
+                return true;
+            }
+        });
+    }
 
     @Override
     public void batDau() {
-        Toast.makeText(this,"LayChapVe",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Đang lấy chap về",Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void ketThuc(String data) {
         try {
+            arrChap.clear();
             JSONArray array = new JSONArray(data);
             for (int i=0; i<array.length(); i++) {
                 ChapTruyen chapTruyen = new ChapTruyen(array.getJSONObject(i));
@@ -136,6 +152,9 @@ ChapTruyenAdapter chapTruyenAdapter;
 
     @Override
     public void biLoi() {
-
+        Toast.makeText(this,"Lỗi khi tải",Toast.LENGTH_SHORT).show();
+    }
+    public void updateChap(){
+        new ApiChapTruyen(this, truyenTranh.getId()).execute();
     }
 }
