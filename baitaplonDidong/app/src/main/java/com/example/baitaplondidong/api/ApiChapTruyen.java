@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 
 import com.example.baitaplondidong.interfaces.LayChapVe;
 import com.example.baitaplondidong.interfaces.LayTruyenVe;
+import com.example.baitaplondidong.object.TruyenTranh;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -14,6 +15,13 @@ import java.io.IOException;
 public class ApiChapTruyen extends AsyncTask<Void,Void,Void> {
     String data, idTruyen;
     LayChapVe layChapVe;
+    TruyenTranh truyenTranh;
+
+
+    public ApiChapTruyen(TruyenTranh truyenTranh, String idTruyen) {
+        this.truyenTranh = truyenTranh;
+        this.idTruyen = idTruyen;
+    }
 
     public ApiChapTruyen(LayChapVe layChapVe, String idTruyen) {
         this.layChapVe = layChapVe;

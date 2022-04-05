@@ -17,9 +17,11 @@ public class ApiThemVaoThuVien extends AsyncTask<Void,Void,Void> {
     TruyenTranh truyenTranh;
     String data;
     ChapActivity chapActivity;
-    public ApiThemVaoThuVien(TruyenTranh truyenTranh, ChapActivity chapActivity) {
+    Boolean isThemVaoThuVien;
+    public ApiThemVaoThuVien(TruyenTranh truyenTranh, ChapActivity chapActivity, Boolean isThemVaoThuVien) {
         this.truyenTranh = truyenTranh;
         this.chapActivity = chapActivity;
+        this.isThemVaoThuVien = isThemVaoThuVien;
     }
     /**
      * @param voids
@@ -30,15 +32,15 @@ public class ApiThemVaoThuVien extends AsyncTask<Void,Void,Void> {
         //OkHttpClient client = new OkHttpClient();
         OkHttpClient client = new OkHttpClient();
         Request request;
-        if(truyenTranh.getIsMark().equals("1"))
+        if(isThemVaoThuVien)
         {
             request = new Request.Builder()
-                    .url("http://datalaptrinhungdungdidong.000webhostapp.com/addThuVien.php?id="+truyenTranh.getId()+"&isMark=0")
+                    .url("http://datalaptrinhungdungdidong.000webhostapp.com/addThuVien.php?id="+truyenTranh.getId()+"&isMark=1")
                     .build();
         }
         else {
             request = new Request.Builder()
-                    .url("http://datalaptrinhungdungdidong.000webhostapp.com/addThuVien.php?id="+truyenTranh.getId()+"&isMark=1")
+                    .url("http://datalaptrinhungdungdidong.000webhostapp.com/addThuVien.php?id="+truyenTranh.getId()+"&isMark=0")
                     .build();
         }
         data = null;

@@ -6,7 +6,7 @@ import org.json.JSONObject;
 import java.io.Serializable;
 
 public class TruyenTranh implements Serializable {
-    private String tenTruyen,tenChap,LinkAnh, id, isMark;
+    private String tenTruyen, tenChap, LinkAnh, id, isMark;
 
     public TruyenTranh(){
 

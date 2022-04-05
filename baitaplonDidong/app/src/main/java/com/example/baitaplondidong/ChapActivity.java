@@ -36,6 +36,7 @@ Button btnThemOrXoaThuvien, btnDocTruyen;
 TextView txvTenTruyens;
 ImageView imgAnhTruyens;
 TruyenTranh truyenTranh;
+LayChapVe layChapVe;
 ArrayList<TruyenTranh> arrTruyenTranh;
 ListView lsvDanhSachChap;
 ArrayList<ChapTruyen> arrChap;
@@ -83,21 +84,35 @@ ChapTruyenAdapter chapTruyenAdapter;
                 startActivity(intent);
             }
         });
+
+        if (truyenTranh.getIsMark().equals("1")) {
+            btnThemOrXoaThuvien.setText("Xóa khỏi thư viện");
+        }
+        else {
+            btnThemOrXoaThuvien.setText("♡ Thêm vào thư viện");
+        }
         btnThemOrXoaThuvien.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (btnThemOrXoaThuvien.getText().equals("♡ Thêm vào thư viện")) {
-                        Toast.makeText(getApplicationContext(),"Đã thêm vào thư viện", Toast.LENGTH_SHORT).show();
-                        btnThemOrXoaThuvien.setText("\uD83E\uDD0D Xóa khỏi thư viện");
+                    btnThemOrXoaThuvien.setText("Xóa khỏi thư viện");
+                    Toast.makeText(getApplicationContext(),"Đã thêm vào thư viện", Toast.LENGTH_SHORT).show();
+                    new ApiThemVaoThuVien(truyenTranh, ChapActivity.this,true).execute();
                 }
-                else {
-                        Toast.makeText(getApplicationContext(),"Đã xóa khỏi thư viện", Toast.LENGTH_SHORT).show();
-                        btnThemOrXoaThuvien.setText("♡ Thêm vào thư viện");
+                else
+                {
+                    btnThemOrXoaThuvien.setText("♡ Thêm vào thư viện");
+                    Toast.makeText(getApplicationContext(),"Đã xóa khỏi thư viện", Toast.LENGTH_SHORT).show();
+                    new ApiThemVaoThuVien(truyenTranh, ChapActivity.this,false).execute();
                 }
-                new ApiThemVaoThuVien(truyenTranh, ChapActivity.this).execute();
+                //updateTruyen();
+                //updateChap();
             }
         });
+
+
     };
+
     private void setLongClick(){
         lsvDanhSachChap.setLongClickable(true);
         lsvDanhSachChap.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -107,6 +122,7 @@ ChapTruyenAdapter chapTruyenAdapter;
 //                Toast.makeText(ChapActivity.this, body.string(), Toast.LENGTH_SHORT).show();
 //                updateChap();
                 new ApiDanhDauChap(arrChap,i,ChapActivity.this).execute();
+
                 return true;
             }
         });
@@ -139,5 +155,8 @@ ChapTruyenAdapter chapTruyenAdapter;
     }
     public void updateChap(){
         new ApiChapTruyen(this, truyenTranh.getId()).execute();
+    }
+    public void updateTruyen() {
+        new ApiChapTruyen(this,truyenTranh.getId()).execute();
     }
 }
