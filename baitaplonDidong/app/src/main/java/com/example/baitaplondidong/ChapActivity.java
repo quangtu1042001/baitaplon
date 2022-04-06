@@ -36,6 +36,7 @@ Button btnThemOrXoaThuvien, btnDocTruyen;
 TextView txvTenTruyens;
 ImageView imgAnhTruyens;
 TruyenTranh truyenTranh;
+ChapTruyen chapTruyen;
 LayChapVe layChapVe;
 ArrayList<TruyenTranh> arrTruyenTranh;
 ListView lsvDanhSachChap;
@@ -110,6 +111,17 @@ ChapTruyenAdapter chapTruyenAdapter;
             }
         });
 
+        btnDocTruyen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle b = new Bundle();
+                b.putString("idTruyen", arrChap.get(1).getIdTruyen());
+                b.putString("tenChap",arrChap.get(0).getTenChap());
+                Intent intent = new Intent(ChapActivity.this, DocTruyenActivity.class);
+                intent.putExtra("data",b);
+                startActivity(intent);
+            }
+        });
 
     };
 

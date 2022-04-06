@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:padding="1dp"
             android:text="Chap 1"
-            android:textColor="#FFFFFF"
+            android:textColor="#FF0000"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
