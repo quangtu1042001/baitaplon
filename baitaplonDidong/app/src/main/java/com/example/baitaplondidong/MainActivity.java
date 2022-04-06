@@ -40,17 +40,18 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements LayTruyenVe , NavigationView.OnNavigationItemSelectedListener{
-    private static final  int FRAGMENT_HOME = 0;
-    private static final  int FRAGMENT_FAVORITE = 1;
+public class MainActivity extends AppCompatActivity implements LayTruyenVe, NavigationView.OnNavigationItemSelectedListener {
+    private static final int FRAGMENT_HOME = 0;
+    private static final int FRAGMENT_FAVORITE = 1;
 
     private int mCurrentFragment = FRAGMENT_HOME;
 
     GridView gdvDSTruyen;
     TruyenTranhAdapter adapter;
     ArrayList<TruyenTranh> truyenTranhArrayList;
-    EditText edtTimKiem ;
+    EditText edtTimKiem;
     private DrawerLayout mDrawerLayour;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,11 +61,11 @@ public class MainActivity extends AppCompatActivity implements LayTruyenVe , Nav
         setUp();
         setClik();
         new ApiLaytruyen(this).execute();
-    Toolbar toolbar = findViewById(R.id.toolbar);
-    setSupportActionBar(toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-    mDrawerLayour = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayour, toolbar ,R.string.nav_open, R.string.nav_close);
+        mDrawerLayour = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayour, toolbar, R.string.nav_open, R.string.nav_close);
         mDrawerLayour.addDrawerListener(toggle);
         toggle.syncState();
 
@@ -76,17 +77,22 @@ public class MainActivity extends AppCompatActivity implements LayTruyenVe , Nav
     }
 
 
-    private void init(){
+    private void init() {
         truyenTranhArrayList = new ArrayList<>();
 
-        adapter = new TruyenTranhAdapter(this,0,truyenTranhArrayList);
+        adapter = new TruyenTranhAdapter(this, 0, truyenTranhArrayList);
     }
-    private void anhXa(){
+
+    private void anhXa() {
         gdvDSTruyen = findViewById(R.id.gdvDSTruyen);
         edtTimKiem = findViewById(R.id.edtTimKiem);
     }
-    private void setUp(){gdvDSTruyen.setAdapter(adapter) ;}
-    private void setClik(){
+
+    private void setUp() {
+        gdvDSTruyen.setAdapter(adapter);
+    }
+
+    private void setClik() {
         gdvDSTruyen.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -94,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements LayTruyenVe , Nav
                 Bundle b = new Bundle();
                 b.putSerializable("truyen", truyenTranh);
                 Intent intent = new Intent(MainActivity.this, ChapActivity.class);
-                intent.putExtra("data",b);
+                intent.putExtra("data", b);
                 startActivity(intent);
             }
         });
@@ -102,25 +108,39 @@ public class MainActivity extends AppCompatActivity implements LayTruyenVe , Nav
         edtTimKiem.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
                 String s = edtTimKiem.getText().toString();
-                adapter.sortTruyen(s);
+//                adapter.sortTruyen(s);
+                s = s.toUpperCase();
+                int k = 0;
+                for (int i = 0; i < truyenTranhArrayList.size(); i++) {
+                    TruyenTranh t = truyenTranhArrayList.get(i);
+                    String ten = t.getTenTruyen().toUpperCase();
+                    if (ten.indexOf(s) >= 0) {
+                        truyenTranhArrayList.set(i, truyenTranhArrayList.get(k));
+                        truyenTranhArrayList.set(k, t);
+                        k++;
+                    }
+                }
+                adapter = new TruyenTranhAdapter(MainActivity.this, 0, truyenTranhArrayList);
+                adapter.notifyDataSetChanged();
+                gdvDSTruyen.setAdapter(adapter);
+
+
             }
         });
     }
 
     @Override
     public void batDau() {
-        Toast.makeText(this,"Dang lay ve",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Dang lay ve", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -128,21 +148,20 @@ public class MainActivity extends AppCompatActivity implements LayTruyenVe , Nav
         try {
             truyenTranhArrayList.clear();
             JSONArray arr = new JSONArray(data);
-            for (int i = 0; i < arr.length();i++)
-            {
+            for (int i = 0; i < arr.length(); i++) {
                 JSONObject o = arr.getJSONObject(i);
                 truyenTranhArrayList.add(new TruyenTranh(o));
             }
-            adapter = new TruyenTranhAdapter(this,0,truyenTranhArrayList);
+            adapter = new TruyenTranhAdapter(this, 0, truyenTranhArrayList);
             gdvDSTruyen.setAdapter(adapter);
-        }catch (JSONException e){
+        } catch (JSONException e) {
 
         }
     }
 
     @Override
     public void biLoi() {
-        Toast.makeText(this,"Loi ket noi",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Loi ket noi", Toast.LENGTH_SHORT).show();
     }
 
     public void update(View view) {
@@ -154,14 +173,14 @@ public class MainActivity extends AppCompatActivity implements LayTruyenVe , Nav
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.nav_home){
-            if(mCurrentFragment != FRAGMENT_HOME){
+        if (id == R.id.nav_home) {
+            if (mCurrentFragment != FRAGMENT_HOME) {
                 replaceFragment(new HomeFragment());
                 mCurrentFragment = FRAGMENT_HOME;
             }
 
-        }else if (id == R.id.favorite_nav) {
-            if(mCurrentFragment != FRAGMENT_FAVORITE){
+        } else if (id == R.id.favorite_nav) {
+            if (mCurrentFragment != FRAGMENT_FAVORITE) {
                 replaceFragment(new FavoriteFragmet());
                 mCurrentFragment = FRAGMENT_FAVORITE;
             }
@@ -173,14 +192,14 @@ public class MainActivity extends AppCompatActivity implements LayTruyenVe , Nav
 
     @Override
     public void onBackPressed() {
-        if (mDrawerLayour.isDrawerOpen(GravityCompat.START)){
+        if (mDrawerLayour.isDrawerOpen(GravityCompat.START)) {
             mDrawerLayour.closeDrawer(GravityCompat.START);
-        }else{
+        } else {
             super.onBackPressed();
         }
     }
 
-    private void replaceFragment(Fragment fragment){
+    private void replaceFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.content_frame, fragment);
         transaction.commit();

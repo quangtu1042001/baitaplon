@@ -27,21 +27,21 @@ public class TruyenTranhAdapter extends ArrayAdapter<TruyenTranh> {
         this.ct = context;
         this.arr = new ArrayList<>(objects);
     }
-    public void sortTruyen(String s){
-        s=s.toUpperCase();
-        int k=0;
-        for (int i=0; i< arr.size();i++) {
-            TruyenTranh t = arr.get(i);
-            String ten = t.getTenTruyen().toUpperCase();
-            if (ten.indexOf(s) >= 0) {
-                arr.set(i, arr.get(k));
-                arr.set(k, t);
-                k++;
-            }
-            notifyDataSetChanged();
-        }
-
-    }
+//    public void sortTruyen(String s){
+//        s=s.toUpperCase();
+//        int k=0;
+//        for (int i=0; i< arr.size();i++) {
+//            TruyenTranh t = arr.get(i);
+//            String ten = t.getTenTruyen().toUpperCase();
+//            if (ten.indexOf(s) >= 0) {
+//                arr.set(i, arr.get(k));
+//                arr.set(k, t);
+//                k++;
+//            }
+    // Ở đây bạn chỉ thay đổi arraylist, cái cần thay là adapter cơ
+//            notifyDataSetChanged();
+//        }
+//    }
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
