@@ -13,19 +13,35 @@ import java.io.IOException;
 public class ApiLaytruyen extends AsyncTask<Void,Void,Void> {
     String data;
     LayTruyenVe layTruyenVe;
+    boolean isThuVien = false;
 
     public ApiLaytruyen(LayTruyenVe layTruyenVe) {
         this.layTruyenVe = layTruyenVe;
         this.layTruyenVe.batDau();
     }
 
+    public ApiLaytruyen(LayTruyenVe layTruyenVe, boolean isThuVien) {
+        this.layTruyenVe = layTruyenVe;
+        this.isThuVien = isThuVien;
+        this.layTruyenVe.batDau();
+    }
+
     @Override
     protected Void doInBackground(Void... voids) {
         OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder()
-//                .url("http://myjson.dit.upm.es/api/bins/5gn7")
-                .url("http://datalaptrinhungdungdidong.000webhostapp.com/layTruyen.php")
-                .build();
+        Request request;
+
+        if(isThuVien)
+        {
+            request = new Request.Builder()
+                    .url("http://datalaptrinhungdungdidong.000webhostapp.com/layThuVien.php")
+                    .build();
+        }
+        else{
+            request = new Request.Builder()
+                    .url("http://datalaptrinhungdungdidong.000webhostapp.com/layTruyen.php")
+                    .build();
+        }
         data = null;
         try {
             Response response = client.newCall(request).execute();
