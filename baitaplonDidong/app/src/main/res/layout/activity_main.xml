@@ -50,15 +50,16 @@
             android:layout_height="60dp"
             android:background="#363F44"
             android:gravity="center">
+
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="match_parent"
-                android:padding="10dp"
-                android:src="@drawable/update"
                 android:layout_alignParentRight="true"
                 android:backgroundTint="#fff"
-                app:tint="#fff"
-                android:onClick="update"/>
+                android:onClick="update"
+                android:padding="10dp"
+                android:src="@drawable/update"
+                app:tint="#fff" />
 
             <EditText
                 android:id="@+id/edtTimKiem"

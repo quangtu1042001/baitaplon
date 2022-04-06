@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.example.baitaplondidong.adapter.ChapTruyenAdapter;
 import com.example.baitaplondidong.api.ApiChapTruyen;
 import com.example.baitaplondidong.api.ApiDanhDauChap;
+import com.example.baitaplondidong.api.ApiThemVaoThuVien;
 import com.example.baitaplondidong.interfaces.LayChapVe;
 import com.example.baitaplondidong.object.ChapTruyen;
 import com.example.baitaplondidong.object.TruyenTranh;
@@ -35,6 +36,9 @@ Button btnThemOrXoaThuvien, btnDocTruyen;
 TextView txvTenTruyens;
 ImageView imgAnhTruyens;
 TruyenTranh truyenTranh;
+ChapTruyen chapTruyen;
+LayChapVe layChapVe;
+ArrayList<TruyenTranh> arrTruyenTranh;
 ListView lsvDanhSachChap;
 ArrayList<ChapTruyen> arrChap;
 ChapTruyenAdapter chapTruyenAdapter;
@@ -81,40 +85,46 @@ ChapTruyenAdapter chapTruyenAdapter;
                 startActivity(intent);
             }
         });
+
+        if (truyenTranh.getIsMark().equals("1")) {
+            btnThemOrXoaThuvien.setText("Xóa khỏi thư viện");
+        }
+        else {
+            btnThemOrXoaThuvien.setText("♡ Thêm vào thư viện");
+        }
         btnThemOrXoaThuvien.setOnClickListener(new View.OnClickListener() {
-            OkHttpClient client = new OkHttpClient();
             @Override
             public void onClick(View view) {
                 if (btnThemOrXoaThuvien.getText().equals("♡ Thêm vào thư viện")) {
-                    try {
-                        Request request = new Request.Builder().url("http://datalaptrinhungdungdidong.000webhostapp.com/addThuVien.php?id="
-                                + truyenTranh.getId() +"&isMark=1").build();
-                        Response response = client.newCall(request).execute();
-                        //ResponseBody body = response.body();
-                        System.out.print(truyenTranh.getId());
-                        Toast.makeText(getApplicationContext(),"Đã thêm vào thư viện", Toast.LENGTH_SHORT).show();
-                        btnThemOrXoaThuvien.setText("\uD83E\uDD0D Xóa khỏi thư viện");
-                    }
-                    catch (Exception e) {
-                        Toast.makeText(getApplicationContext(),"ERROR", Toast.LENGTH_SHORT).show();
-                    }
+                    btnThemOrXoaThuvien.setText("Xóa khỏi thư viện");
+                    Toast.makeText(getApplicationContext(),"Đã thêm vào thư viện", Toast.LENGTH_SHORT).show();
+                    new ApiThemVaoThuVien(truyenTranh, ChapActivity.this,true).execute();
                 }
-                else {
-                    try {
-                        Request request = new Request.Builder().url("http://datalaptrinhungdungdidong.000webhostapp.com/addThuVien.php?id="
-                                + truyenTranh.getId() +"&isMark=0").build();
-                        Response response = client.newCall(request).execute();
-                        //ResponseBody body = response.body();
-                        Toast.makeText(getApplicationContext(),"Đã xóa khỏi thư viện", Toast.LENGTH_SHORT).show();
-                        btnThemOrXoaThuvien.setText("♡ Thêm vào thư viện");
-                    }
-                    catch (Exception e) {
-                        Toast.makeText(getApplicationContext(),"ERROR", Toast.LENGTH_SHORT).show();
-                    }
+                else
+                {
+                    btnThemOrXoaThuvien.setText("♡ Thêm vào thư viện");
+                    Toast.makeText(getApplicationContext(),"Đã xóa khỏi thư viện", Toast.LENGTH_SHORT).show();
+                    new ApiThemVaoThuVien(truyenTranh, ChapActivity.this,false).execute();
                 }
+                //updateTruyen();
+                //updateChap();
             }
         });
+
+        btnDocTruyen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle b = new Bundle();
+                b.putString("idTruyen", arrChap.get(1).getIdTruyen());
+                b.putString("tenChap",arrChap.get(0).getTenChap());
+                Intent intent = new Intent(ChapActivity.this, DocTruyenActivity.class);
+                intent.putExtra("data",b);
+                startActivity(intent);
+            }
+        });
+
     };
+
     private void setLongClick(){
         lsvDanhSachChap.setLongClickable(true);
         lsvDanhSachChap.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -124,6 +134,7 @@ ChapTruyenAdapter chapTruyenAdapter;
 //                Toast.makeText(ChapActivity.this, body.string(), Toast.LENGTH_SHORT).show();
 //                updateChap();
                 new ApiDanhDauChap(arrChap,i,ChapActivity.this).execute();
+
                 return true;
             }
         });
@@ -156,5 +167,8 @@ ChapTruyenAdapter chapTruyenAdapter;
     }
     public void updateChap(){
         new ApiChapTruyen(this, truyenTranh.getId()).execute();
+    }
+    public void updateTruyen() {
+        new ApiChapTruyen(this,truyenTranh.getId()).execute();
     }
 }
