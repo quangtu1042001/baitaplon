@@ -131,8 +131,25 @@ public class MainActivity extends AppCompatActivity implements LayTruyenVe {
             @Override
             public void afterTextChanged(Editable editable) {
                 String s = edtTimKiem.getText().toString();
-                adapter.sortTruyen(s);
+//                adapter.sortTruyen(s);
+                s = s.toUpperCase();
+                int k = 0;
+                for (int i = 0; i < truyenTranhArrayList.size(); i++) {
+                    TruyenTranh t = truyenTranhArrayList.get(i);
+                    String ten = t.getTenTruyen().toUpperCase();
+                    if (ten.indexOf(s) >= 0) {
+                        truyenTranhArrayList.set(i, truyenTranhArrayList.get(k));
+                        truyenTranhArrayList.set(k, t);
+                        k++;
+                    }
+                }
+                adapter = new TruyenTranhAdapter(MainActivity.this, 0, truyenTranhArrayList);
+                adapter.notifyDataSetChanged();
+                gdvDSTruyen.setAdapter(adapter);
+
+
             }
+
         });
     }
 
