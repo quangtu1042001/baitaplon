@@ -38,9 +38,9 @@ public class TruyenTranhAdapter extends ArrayAdapter<TruyenTranh> {
 //                arr.set(k, t);
 //                k++;
 //            }
-    // Ở đây bạn chỉ thay đổi arraylist, cái cần thay là adapter cơ
 //            notifyDataSetChanged();
 //        }
+//
 //    }
     @NonNull
     @Override

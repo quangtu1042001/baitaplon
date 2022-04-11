@@ -1,6 +1,7 @@
 package com.example.baitaplondidong;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -40,27 +41,20 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements LayTruyenVe, NavigationView.OnNavigationItemSelectedListener {
-    private static final int FRAGMENT_HOME = 0;
-    private static final int FRAGMENT_FAVORITE = 1;
-
-    private int mCurrentFragment = FRAGMENT_HOME;
+public class MainActivity extends AppCompatActivity implements LayTruyenVe {
 
     GridView gdvDSTruyen;
     TruyenTranhAdapter adapter;
     ArrayList<TruyenTranh> truyenTranhArrayList;
     EditText edtTimKiem;
+
     private DrawerLayout mDrawerLayour;
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        init();
-        anhXa();
-        setUp();
-        setClik();
-        new ApiLaytruyen(this).execute();
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -69,11 +63,29 @@ public class MainActivity extends AppCompatActivity implements LayTruyenVe, Navi
         mDrawerLayour.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.navigation_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        navigationView = findViewById(R.id.navigation_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                if (id == R.id.nav_home) {
+                    Toast.makeText(MainActivity.this, "Đây là trang chủ", Toast.LENGTH_SHORT).show();
+                    layTruyen();
 
-        replaceFragment(new HomeFragment());
-        navigationView.getMenu().findItem(R.id.nav_home).setChecked(true);
+                } else if (id == R.id.favorite_nav) {
+                    Toast.makeText(MainActivity.this, "Đây là thư viện", Toast.LENGTH_SHORT).show();
+                    layThuVien();
+                }
+                mDrawerLayour.closeDrawer(GravityCompat.START);
+                return true;
+            }
+        });
+
+
+        init();
+        anhXa();
+        setUp();
+        setClik();
     }
 
 
@@ -108,10 +120,12 @@ public class MainActivity extends AppCompatActivity implements LayTruyenVe, Navi
         edtTimKiem.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
             }
 
             @Override
@@ -135,6 +149,7 @@ public class MainActivity extends AppCompatActivity implements LayTruyenVe, Navi
 
 
             }
+
         });
     }
 
@@ -169,39 +184,20 @@ public class MainActivity extends AppCompatActivity implements LayTruyenVe, Navi
 
     }
 
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.nav_home) {
-            if (mCurrentFragment != FRAGMENT_HOME) {
-                replaceFragment(new HomeFragment());
-                mCurrentFragment = FRAGMENT_HOME;
-            }
-
-        } else if (id == R.id.favorite_nav) {
-            if (mCurrentFragment != FRAGMENT_FAVORITE) {
-                replaceFragment(new FavoriteFragmet());
-                mCurrentFragment = FRAGMENT_FAVORITE;
-            }
-        }
-
-        mDrawerLayour.closeDrawer(GravityCompat.START);
-        return true;
-    }
-
     @Override
     public void onBackPressed() {
-        if (mDrawerLayour.isDrawerOpen(GravityCompat.START)) {
+        if (mDrawerLayour.isDrawerOpen(GravityCompat.START)){
             mDrawerLayour.closeDrawer(GravityCompat.START);
-        } else {
+        }else{
             super.onBackPressed();
         }
     }
 
-    private void replaceFragment(Fragment fragment) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.content_frame, fragment);
-        transaction.commit();
+    private void layTruyen(){
+        new ApiLaytruyen(this).execute();
+    }
+
+    private void layThuVien() {
+        new ApiLaytruyen(this, true).execute();
     }
 }
