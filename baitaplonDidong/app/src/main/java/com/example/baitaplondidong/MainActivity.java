@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity implements LayTruyenVe {
         anhXa();
         setUp();
         setClik();
+        layTruyen();
     }
 
 
