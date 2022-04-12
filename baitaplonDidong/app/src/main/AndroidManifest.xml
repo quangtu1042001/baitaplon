@@ -13,7 +13,7 @@
         android:theme="@style/Theme.BaitaplonDidong"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".activity.Favorite"
+            android:name=".GioiThieuActivity"
             android:exported="false" />
         <activity
             android:name=".DocTruyenActivity"

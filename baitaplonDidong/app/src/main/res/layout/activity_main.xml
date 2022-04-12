@@ -10,7 +10,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id="@+id/mainFrame"
+        >
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -58,7 +60,7 @@
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/bg_edit"
                 android:gravity="center"
-                android:hint="Nhap ten truyen can tim"
+                android:hint="Nhập tên truyện cần tìm"
                 android:textColor="#fff"
                 android:textColorHint="#B3ADAD"
                 android:textSize="20sp" />

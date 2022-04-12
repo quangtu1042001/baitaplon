@@ -3,10 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Projects/baitaplonAndroid/baitaplonDidong/app/src/main/res/drawable/bg_edit.xml" value="0.115" />
         <entry key="..\:/Projects/baitaplonAndroid/baitaplonDidong/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1295" />
         <entry key="..\:/Projects/baitaplonAndroid/baitaplonDidong/app/src/main/res/drawable/progress_animation.xml" value="0.1955" />
         <entry key="..\:/Projects/baitaplonAndroid/baitaplonDidong/app/src/main/res/layout/activity_chap.xml" value="0.33" />
         <entry key="..\:/Projects/baitaplonAndroid/baitaplonDidong/app/src/main/res/layout/activity_doc_truyen.xml" value="0.22" />
+        <entry key="..\:/Projects/baitaplonAndroid/baitaplonDidong/app/src/main/res/layout/activity_gioithieu.xml" value="0.33" />
         <entry key="..\:/Projects/baitaplonAndroid/baitaplonDidong/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Projects/baitaplonAndroid/baitaplonDidong/app/src/main/res/layout/favorite.xml" value="0.1609375" />
         <entry key="..\:/Projects/baitaplonAndroid/baitaplonDidong/app/src/main/res/layout/header_nav.xml" value="0.18478260869565216" />

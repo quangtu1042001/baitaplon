@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/creditFrame"
+    android:orientation="vertical"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Giới thiệu"
+        android:textSize="25sp"
+        android:layout_margin="15sp"
+        android:layout_gravity="center"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thiết kế &amp; lập trình trang chủ"
+        android:textSize="20sp"
+
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="- Nguyễn Quang Tú"
+        android:textSize="15sp"
+        android:layout_marginHorizontal="5sp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thiết kế &amp; lập trình chap truyện"
+        android:textSize="20sp"
+        android:layout_marginTop="10sp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="- Trần Văn Tuấn"
+        android:textSize="15sp"
+        android:layout_marginHorizontal="5sp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thiết kế &amp; lập trình trang đọc truyện"
+        android:textSize="20sp"
+        android:layout_marginTop="10sp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="- Đoàn Hùng Dương"
+        android:textSize="15sp"
+        android:layout_marginHorizontal="5sp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tạo database"
+        android:textSize="20sp"
+        android:layout_marginTop="10sp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="- Đoàn Hùng Dương"
+        android:textSize="15sp"
+        />
+
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Nguồn tham khảo"-->
+<!--        android:textSize="20sp"-->
+<!--        android:layout_marginTop="10sp"-->
+<!--        />-->
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="- Bài giảng phát triển ứng dụng cho các thiết bị di động"-->
+<!--        android:textSize="15sp"-->
+<!--        />-->
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="- DuMV - Android Studio Programmer"-->
+<!--        android:textSize="15sp"-->
+<!--        />-->
+</LinearLayout>

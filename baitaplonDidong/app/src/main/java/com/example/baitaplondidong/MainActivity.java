@@ -8,29 +8,22 @@ import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
-import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.FrameLayout;
+
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 
 import com.example.baitaplondidong.adapter.TruyenTranhAdapter;
 import com.example.baitaplondidong.api.ApiLaytruyen;
-//import com.example.baitaplondidong.fragment.FavoriteFragmet;
-import com.example.baitaplondidong.fragment.FavoriteFragmet;
-import com.example.baitaplondidong.fragment.HomeFragment;
 import com.example.baitaplondidong.interfaces.LayTruyenVe;
 import com.example.baitaplondidong.object.TruyenTranh;
 import com.google.android.material.navigation.NavigationView;
@@ -70,16 +63,24 @@ public class MainActivity extends AppCompatActivity implements LayTruyenVe {
                 int id = item.getItemId();
                 if (id == R.id.nav_home) {
                     Toast.makeText(MainActivity.this, "Đây là trang chủ", Toast.LENGTH_SHORT).show();
+                    edtTimKiem.setHint("Nhập tên truyện cần tìm");
                     layTruyen();
 
                 } else if (id == R.id.favorite_nav) {
                     Toast.makeText(MainActivity.this, "Đây là thư viện", Toast.LENGTH_SHORT).show();
+                    edtTimKiem.setHint("Thư viện");
                     layThuVien();
+                }
+                else
+                {
+                    Intent intent = new Intent(MainActivity.this, GioiThieuActivity.class);
+                    startActivity(intent);
                 }
                 mDrawerLayour.closeDrawer(GravityCompat.START);
                 return true;
             }
         });
+        navigationView.getMenu().getItem(0).setChecked(true);
 
 
         init();
@@ -155,7 +156,7 @@ public class MainActivity extends AppCompatActivity implements LayTruyenVe {
 
     @Override
     public void batDau() {
-        Toast.makeText(this, "Dang lay ve", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Lấy tuyện", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -176,7 +177,7 @@ public class MainActivity extends AppCompatActivity implements LayTruyenVe {
 
     @Override
     public void biLoi() {
-        Toast.makeText(this, "Loi ket noi", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Lỗi kết nối !", Toast.LENGTH_SHORT).show();
     }
 
     public void update(View view) {

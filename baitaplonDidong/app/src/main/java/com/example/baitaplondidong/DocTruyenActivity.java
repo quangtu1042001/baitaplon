@@ -84,6 +84,6 @@ public class DocTruyenActivity extends AppCompatActivity implements LayAnhVe{
 
     @Override
     public void biLoi() {
-        Toast.makeText(this,"Loi ket noi",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Lỗi kết nối",Toast.LENGTH_SHORT).show();
     }
 }
