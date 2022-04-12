@@ -33,7 +33,7 @@ import java.util.ArrayList;
 
 public class ChapActivity extends AppCompatActivity implements LayChapVe {
 Button btnThemOrXoaThuvien, btnDocTruyen;
-TextView txvTenTruyens;
+TextView txvTenTruyens,txvTacgia,txvTrangthai,txvNguon;
 ImageView imgAnhTruyens;
 TruyenTranh truyenTranh;
 ChapTruyen chapTruyen;
@@ -65,11 +65,21 @@ ChapTruyenAdapter chapTruyenAdapter;
         btnDocTruyen = findViewById(R.id.btnDocTruyen);
         btnThemOrXoaThuvien = findViewById(R.id.btnThemOrXoaThuvien);
         txvTenTruyens = findViewById(R.id.txvTenTruyens);
+
+        txvTrangthai = findViewById(R.id.txvTrangthai);
+        txvTacgia = findViewById(R.id.txvTacgia);
+        txvNguon = findViewById(R.id.txvNguon);
+
         imgAnhTruyens = findViewById(R.id.imgAnhTruyens);
         lsvDanhSachChap = findViewById(R.id.lsvDanhSachChap);
     };
     private void setUp(){
         txvTenTruyens.setText(truyenTranh.getTenTruyen());
+
+        txvTrangthai.setText(truyenTranh.getTrangThai());
+        txvTacgia.setText(truyenTranh.getTacGia());
+        txvNguon.setText(truyenTranh.getNguon());
+
         Glide.with(this).load(truyenTranh.getLinkAnh()).into(imgAnhTruyens);
         //lsvDanhSachChap.setAdapter(chapTruyenAdapter);
     };

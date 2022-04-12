@@ -60,7 +60,7 @@
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/bg_edit"
                 android:gravity="center"
-                android:hint="Nhập tên truyện cần tìm"
+                android:hint="Tìm kiếm"
                 android:textColor="#fff"
                 android:textColorHint="#B3ADAD"
                 android:textSize="20sp" />

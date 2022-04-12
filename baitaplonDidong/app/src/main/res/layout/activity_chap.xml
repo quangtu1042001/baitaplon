@@ -66,7 +66,7 @@
                     android:textSize="15sp" />
 
                 <TextView
-                    android:id="@+id/txvTrangThai"
+                    android:id="@+id/txvTrangthai"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/txvTacgia"
@@ -77,7 +77,7 @@
                     android:id="@+id/txvNguon"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/txvTrangThai"
+                    android:layout_below="@+id/txvTrangthai"
                     android:text="Nguồn:"
                     android:textSize="15sp" />
             </RelativeLayout>
@@ -92,14 +92,14 @@
         android:gravity="center_horizontal">
             <Button
                 android:id="@+id/btnThemOrXoaThuvien"
-                android:layout_marginRight="5dp"
+                android:layout_marginRight="3dp"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:text="♡ Thêm vào thư viện"
                 android:textSize="12sp"/>
             <Button
                 android:id="@+id/btnDocTruyen"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="3dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Đọc truyện"

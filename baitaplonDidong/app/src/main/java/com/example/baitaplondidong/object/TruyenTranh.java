@@ -8,11 +8,24 @@ import java.io.Serializable;
 public class TruyenTranh implements Serializable {
     private String tenTruyen, tenChap, LinkAnh, id, isMark;
 
+    private String tacGia, trangThai, Nguon;
+
     public TruyenTranh(){
 
     }
 
+    public TruyenTranh(String tacGia, String trangThai, String nguon) {
+        this.tacGia = tacGia;
+        this.trangThai = trangThai;
+        Nguon = nguon;
+    }
+
     public TruyenTranh(JSONObject o) throws JSONException {
+
+        tacGia = o.getString("tacGia");
+        trangThai = o.getString("trangThai");
+        Nguon = o.getString("Nguon");
+
         isMark = o.getString("isMark");
         id = o.getString("id");
         tenTruyen = o.getString("tenTruyen");
@@ -66,5 +79,29 @@ public class TruyenTranh implements Serializable {
 
     public void setIsMark(String isMark) {
         this.isMark = isMark;
+    }
+
+    public String getTacGia() {
+        return "Tác giả: " + tacGia;
+    }
+
+    public void setTacGia(String tacGia) {
+        this.tacGia = tacGia;
+    }
+
+    public String getTrangThai() {
+        return "Trạng thái: " + trangThai;
+    }
+
+    public void setTrangThai(String trangThai) {
+        this.trangThai = trangThai;
+    }
+
+    public String getNguon() {
+        return "Nguồn: " + Nguon;
+    }
+
+    public void setNguon(String nguon) {
+        Nguon = nguon;
     }
 }
