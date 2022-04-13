@@ -63,9 +63,8 @@ public class MainActivity extends AppCompatActivity implements LayTruyenVe {
                 int id = item.getItemId();
                 if (id == R.id.nav_home) {
                     Toast.makeText(MainActivity.this, "Đây là trang chủ", Toast.LENGTH_SHORT).show();
-                    edtTimKiem.setHint("Nhập tên truyện cần tìm");
+                    edtTimKiem.setHint("Tìm kiếm");
                     layTruyen();
-
                 } else if (id == R.id.favorite_nav) {
                     Toast.makeText(MainActivity.this, "Đây là thư viện", Toast.LENGTH_SHORT).show();
                     edtTimKiem.setHint("Thư viện");
