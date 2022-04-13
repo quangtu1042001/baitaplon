@@ -1,13 +1,5 @@
 package com.example.baitaplondidong;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -16,11 +8,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
-
 import android.widget.GridView;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.baitaplondidong.adapter.TruyenTranhAdapter;
 import com.example.baitaplondidong.api.ApiLaytruyen;
@@ -34,12 +30,11 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements LayTruyenVe {
+public class ThuVienActivity extends AppCompatActivity implements LayTruyenVe {
 
     GridView gdvDSTruyen;
     TruyenTranhAdapter adapter;
     ArrayList<TruyenTranh> truyenTranhArrayList;
-    EditText edtTimKiem;
 
     private DrawerLayout mDrawerLayour;
     private NavigationView navigationView;
@@ -47,45 +42,45 @@ public class MainActivity extends AppCompatActivity implements LayTruyenVe {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        setContentView(R.layout.activity_thuvien);
+        Toolbar toolbar = findViewById(R.id.toolbar1);
         setSupportActionBar(toolbar);
 
-        mDrawerLayour = findViewById(R.id.drawer_layout);
+        mDrawerLayour = findViewById(R.id.drawer_layout1);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayour, toolbar, R.string.nav_open, R.string.nav_close);
         mDrawerLayour.addDrawerListener(toggle);
         toggle.syncState();
 
-        navigationView = findViewById(R.id.navigation_view);
+        navigationView = findViewById(R.id.navigation_view1);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
                 if (id == R.id.nav_home) {
-                    Toast.makeText(MainActivity.this, "Đây là trang chủ rồi", Toast.LENGTH_SHORT).show();
-                    edtTimKiem.setHint("Tìm kiếm");
-                    layTruyen();
-                } else if (id == R.id.favorite_nav) {
-                    Intent intent = new Intent(MainActivity.this, ThuVienActivity.class);
+                    Intent intent = new Intent(ThuVienActivity.this, MainActivity.class);
                     startActivity(intent);
+
+                } else if (id == R.id.favorite_nav) {
+                    Toast.makeText(ThuVienActivity.this, "Đây là thư viện rồi !", Toast.LENGTH_SHORT).show();
+                    layThuVien();
                 }
                 else
                 {
-                    Intent intent = new Intent(MainActivity.this, GioiThieuActivity.class);
+                    Intent intent = new Intent(ThuVienActivity.this, GioiThieuActivity.class);
                     startActivity(intent);
                 }
                 mDrawerLayour.closeDrawer(GravityCompat.START);
                 return true;
             }
         });
-        navigationView.getMenu().getItem(0).setChecked(true);
+        navigationView.getMenu().getItem(1).setChecked(true);
 
 
         init();
         anhXa();
         setUp();
         setClik();
-        layTruyen();
+        layThuVien();
     }
 
 
@@ -96,8 +91,7 @@ public class MainActivity extends AppCompatActivity implements LayTruyenVe {
     }
 
     private void anhXa() {
-        gdvDSTruyen = findViewById(R.id.gdvDSTruyen);
-        edtTimKiem = findViewById(R.id.edtTimKiem);
+        gdvDSTruyen = findViewById(R.id.gdvDSTruyen1);
     }
 
     private void setUp() {
@@ -111,45 +105,10 @@ public class MainActivity extends AppCompatActivity implements LayTruyenVe {
                 TruyenTranh truyenTranh = truyenTranhArrayList.get(i);
                 Bundle b = new Bundle();
                 b.putSerializable("truyen", truyenTranh);
-                Intent intent = new Intent(MainActivity.this, ChapActivity.class);
+                Intent intent = new Intent(ThuVienActivity.this, ChapActivity.class);
                 intent.putExtra("data", b);
                 startActivity(intent);
             }
-        });
-
-        edtTimKiem.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                String s = edtTimKiem.getText().toString();
-//                adapter.sortTruyen(s);
-                s = s.toUpperCase();
-                int k = 0;
-                for (int i = 0; i < truyenTranhArrayList.size(); i++) {
-                    TruyenTranh t = truyenTranhArrayList.get(i);
-                    String ten = t.getTenTruyen().toUpperCase();
-                    if (ten.indexOf(s) >= 0) {
-                        truyenTranhArrayList.set(i, truyenTranhArrayList.get(k));
-                        truyenTranhArrayList.set(k, t);
-                        k++;
-                    }
-                }
-                adapter = new TruyenTranhAdapter(MainActivity.this, 0, truyenTranhArrayList);
-                adapter.notifyDataSetChanged();
-                gdvDSTruyen.setAdapter(adapter);
-
-
-            }
-
         });
     }
 
@@ -192,11 +151,6 @@ public class MainActivity extends AppCompatActivity implements LayTruyenVe {
             super.onBackPressed();
         }
     }
-
-    private void layTruyen(){
-        new ApiLaytruyen(this).execute();
-    }
-
     private void layThuVien() {
         new ApiLaytruyen(this, true).execute();
     }
